@@ -83,9 +83,12 @@ const schema = mongoose.Schema(
 		deliveredAt: {
 			type: Date,
 		},
+		// voucher: {
+		// 	type: mongoose.Schema.Types.ObjectId,
+		// 	ref: 'Voucher',
+		// },
 		voucher: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Voucher',
+			type: String,
 		},
 	},
 	{

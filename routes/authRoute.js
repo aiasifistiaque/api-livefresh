@@ -8,6 +8,7 @@ import getUserByToken from '../controllers/users/getUserByToken.js';
 import voucher_codes from 'voucher-code-generator';
 import Voucher from '../models/voucherModel.js';
 import updateMyInfo from '../controllers/users/updateMyInfo.js';
+import getNewUserDiscount from '../controllers/users/getNewUserDiscount.js';
 
 const router = express.Router();
 
@@ -122,5 +123,6 @@ function registerValidate(user) {
 
 router.get('/self', protect, getUserByToken);
 router.put('/self', protect, updateMyInfo);
+router.get('/discount/:amount', protect, getNewUserDiscount);
 
 export default router;
