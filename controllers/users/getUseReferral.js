@@ -8,8 +8,9 @@ const getUseReferral = async (req, res) => {
 		if (!ref) {
 			return res.status(404).json({ message: 'invalid referral code' });
 		}
+
 		const data = await Order.findOne({
-			referral: referral,
+			voucher: referral,
 			user: req.user._id,
 		});
 

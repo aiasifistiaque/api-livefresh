@@ -1,4 +1,5 @@
 import Order from '../../models/orderModel.js';
+import User from '../../models/userModel.js';
 
 const createOrder = async (req, res) => {
 	const {
@@ -27,6 +28,14 @@ const createOrder = async (req, res) => {
 		});
 
 		const saved = await item.save();
+
+		if (discount > 0) {
+			const user = await User.findOne({ refCode: voucher }).select('-password');
+			user.wallet =
+				(user?.wallet ? user.wallet : 0) + (itemPrice - discount) / 10;
+			console.log(user);
+			await user.save();
+		}
 
 		return res.status(201).json(saved);
 	} catch (e) {
